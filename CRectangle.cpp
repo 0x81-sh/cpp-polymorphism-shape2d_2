@@ -77,10 +77,12 @@ void CRectangle::render(const CCanvas &ref) const {
             cv[y + h - i][x + w] = colorString + CCanvas::vertical + COLOR_RESET;
         }
     }
-    for (int yL = 1; yL < h; yL++) {
-        for (int xL = 1; xL < w; xL++) {
-            if (x < width - xL && y < height - yL && xL >= 0 && yL >= 0 && isFilled) {
-                cv[y + yL][x + xL] = colorString + CCanvas::fill + COLOR_RESET;
+    if (isFilled) {
+        for (int yL = 1; yL < h; yL++) {
+            for (int xL = 1; xL < w; xL++) {
+                if (x < width - xL && y < height - yL && xL >= 0 && yL >= 0) {
+                    cv[y + yL][x + xL] = colorString + CCanvas::fill + COLOR_RESET;
+                }
             }
         }
     }

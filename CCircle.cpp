@@ -40,5 +40,27 @@ float CCircle::area() const {
 }
 
 void CCircle::render(const CCanvas &ref) const {
+    int r = radius;
+    int cX = center.getX();
+    int cY = center.getY();
+    double ratio = 6/3;
+    int width = ref.getWidth();
+    int height = ref.getHeight();
+    std::string **cv = ref.cv;
 
+    for (int x = floor(cX - r * ratio); x < ceil(cX + r * ratio); x++) {
+        for (int y = cY - r; y < cY + r; y++) {
+            if (x < width - 1 && y < height && x >= 0 && y >= 0) {
+                double dist = sqrt(pow((cX - x) / ratio, 2) + pow(cY - y, 2));
+                if (dist < r - 1 / ratio && r - 1 <= dist) {
+                    cv[y][x] = colorString + CCanvas::circleOut + COLOR_RESET;
+                }
+            }
+        }
+    }
+
+    //center
+    if (cX < width - 1 && cY < height && cX >= 0 && cY >= 0) {
+        cv[cY][cX] = colorString + CCanvas::circleCenter + COLOR_RESET;
+    }
 }

@@ -49,3 +49,11 @@ void CCanvas::render(std::ostream &out) const {
     out << std::endl;
 }
 
+void CCanvas::clear() {
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            cv[y][x] = CCanvas::blank;
+        }
+    }
+}
+

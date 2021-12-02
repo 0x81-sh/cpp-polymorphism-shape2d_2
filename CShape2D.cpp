@@ -8,6 +8,7 @@ CShape2D::CShape2D(const CColor &col, int lType, bool isFilled) :
     isFilled(isFilled), color (col), lineType(lType) {
     std::stringstream ss;
     ss << "\x1b[38;2;" << color.getRed() << ";" << color.getGreen() << ";" << color.getBlue() << "m";
+
     colorString = !USE_COLOR ? "" : ss.str();
 }
 

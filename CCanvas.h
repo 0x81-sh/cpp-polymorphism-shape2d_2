@@ -19,6 +19,7 @@ class CCanvas {
         CCanvas(int height, int width);
         ~CCanvas();
         void render(std::ostream &out) const;
+        void clear();
 
         int getHeight() const;
         int getWidth() const;
