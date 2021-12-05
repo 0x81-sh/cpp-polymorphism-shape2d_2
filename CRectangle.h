@@ -12,8 +12,9 @@ class CRectangle : public CShape2D {
 
         void cornerCheck(const CPoint2D &a, int height, int width, std::string** cv) const;
     public:
-        CRectangle(float x, float y, float width, float height, const CColor &col, int lt, bool isFilled);
+        CRectangle(float x = 0, float y = 0, float width = 0, float height = 0, const CColor &col = {0, 0, 0}, int lt = 0, bool isFilled = false);
         std::ostream& print(std::ostream &os) const override;
+        std::istream &read(std::istream &is) override;
         void scale(float factor) override;
         float area() const override;
         void move(const CPoint2D &loc) override;

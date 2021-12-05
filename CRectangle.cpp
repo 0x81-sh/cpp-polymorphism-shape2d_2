@@ -4,7 +4,10 @@ CRectangle::CRectangle(float x, float y, float width, float height, const CColor
     CShape2D(col, lt, isFilled), bottomLeftCorner(x, y), width(width), height(height) {}
 
 std::ostream &CRectangle::print(std::ostream &os) const {
-    return CShape2D::print(os);
+    CShape2D::print(os);
+    std::cout << "bottomLeftCorner: [" << bottomLeftCorner << "]; width: " << width << "; height: " << height << "; ";
+
+    return os;
 }
 
 const CPoint2D &CRectangle::getBottomLeftCorner() const {
@@ -50,7 +53,7 @@ void CRectangle::render(const CCanvas &ref) const {
     const CPoint2D topLeft(topRight.getX() - (topRight.getX() - bottomLeft.getX()), topRight.getY());
     const CPoint2D bottomRight(topRight.getX(), topRight.getY() - (topRight.getY() - bottomLeft.getY()));
 
-    std::cout << topLeft << " | " << topRight << "\n" << bottomLeft << " | " << bottomRight << "\n";
+    //std::cout << topLeft << " | " << topRight << "\n" << bottomLeft << " | " << bottomRight << "\n";
 
     int x = bottomLeft.getX();
     int y = bottomLeft.getY();
@@ -97,4 +100,19 @@ void CRectangle::cornerCheck(const CPoint2D &a, int height, int width, std::stri
     if (a.getX() < width - 1 && a.getY() < height && a.getY() >= 0 && a.getX() >= 0) {
         cv[(int) a.getY()][(int) a.getX()] = colorString + CCanvas::corner + COLOR_RESET;
     }
+}
+
+std::istream &CRectangle::read(std::istream &is) {
+    CShape2D::read(is);
+
+    std::cout << "Bottom left corner:\n";
+    std::cin >> bottomLeftCorner;
+
+    std::cout << "Width: ";
+    std::cin >> width;
+
+    std::cout << "Height: ";
+    std::cin >> height;
+
+    return is;
 }

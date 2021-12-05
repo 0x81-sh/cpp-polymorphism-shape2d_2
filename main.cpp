@@ -1,11 +1,10 @@
 #include <iostream>
 #include "CCircle.h"
 #include "CRectangle.h"
-
-using namespace std;
+#include "CLI.h"
 
 int main() {
-    CCircle filledRedCir(10.0, 10.0, 7, CColor::RED, CShape2D::SOLID, true);
+    /*CCircle filledRedCir(20.0, 10.0, 7, CColor::RED, CShape2D::SOLID, false);
     CColor col(0, 100, 100);
     CCircle dashedCir(50.0, 50.0, 3, col, CShape2D::DASHED, false);
 
@@ -18,9 +17,13 @@ int main() {
 
     CCanvas c(20, 100);
     //rec.render(c);
-    rec2.render(c);
-    rec3.render(c);
+    //rec2.render(c);
+    //rec3.render(c);
     filledRedCir.render(c);
 
-    c.render(std::cout);
+    c.render(std::cout);*/
+
+    CLI a;
+    a.start();
+
 }

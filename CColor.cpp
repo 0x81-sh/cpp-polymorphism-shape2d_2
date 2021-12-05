@@ -36,3 +36,16 @@ int CColor::getBlue() const {
 void CColor::setBlue(int blue) {
     CColor::blue = blue;
 }
+
+std::istream &operator>>(std::istream &is, CColor &d) {
+    std::cout << "Red: ";
+    std::cin >> d.red;
+
+    std::cout << "Blue: ";
+    std::cin >> d.blue;
+
+    std::cout << "Green: ";
+    std::cin >> d.green;
+
+    return is;
+}

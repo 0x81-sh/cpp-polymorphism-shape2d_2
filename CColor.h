@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ostream>
+#include <iostream>
 
 class CColor {
     private:
@@ -10,6 +11,7 @@ class CColor {
     public:
         CColor(int r = 0, int g = 0, int b = 0);
         friend std::ostream &operator<<(std::ostream &os, const CColor &color);
+        friend std::istream &operator>>(std::istream &is, CColor &d);
 
         int getRed() const;
         void setRed(int red);

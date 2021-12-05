@@ -27,3 +27,13 @@ void CPoint2D::add(const CPoint2D &vec) {
     y += vec.y;
     x += vec.x;
 }
+
+std::istream &operator>>(std::istream &is, CPoint2D &d) {
+    std::cout << "X: ";
+    std::cin >> d.x;
+
+    std::cout << "Y: ";
+    std::cin >> d.y;
+
+    return is;
+}
