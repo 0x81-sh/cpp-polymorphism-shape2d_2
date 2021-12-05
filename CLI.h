@@ -9,7 +9,7 @@
 #ifdef _WIN32
     #define CLEAR "cls"
 #else
-    #defiine CLEAR "clear"
+    #define CLEAR "clear"
 #endif
 
 class CLI {
