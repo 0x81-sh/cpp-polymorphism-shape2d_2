@@ -9,8 +9,6 @@ class CRectangle : public CShape2D {
         CPoint2D bottomLeftCorner;
         float width;
         float height;
-
-        void cornerCheck(const CPoint2D &a, int height, int width, std::string** cv) const;
     public:
         CRectangle(float x = 0, float y = 0, float width = 0, float height = 0, const CColor &col = {0, 0, 0}, int lt = 0, bool isFilled = false);
         std::ostream& print(std::ostream &os) const override;

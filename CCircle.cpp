@@ -44,10 +44,6 @@ void CCircle::render(CCanvas &ref) const {
     int cX = center.getX();
     int cY = center.getY();
     double ratio = 6/3;
-    int width = ref.getWidth();
-    int height = ref.getHeight();
-    std::string **cv = ref.cv;
-
     std::string stroke = colorString + CCanvas::circleOut + COLOR_RESET;
     std::string fill = colorString + CCanvas::fill + COLOR_RESET;
 
@@ -82,9 +78,7 @@ void CCircle::render(CCanvas &ref) const {
     }
 
     //center
-    if (cX < width - 1 && cY < height && cX >= 0 && cY >= 0) {
-        cv[cY][cX] = colorString + CCanvas::circleCenter + COLOR_RESET;
-    }
+    ref.writeChecked(cX, cY, colorString + CCanvas::circleCenter + COLOR_RESET);
 }
 
 std::istream &CCircle::read(std::istream &is) {
