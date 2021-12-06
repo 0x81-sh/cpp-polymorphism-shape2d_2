@@ -1,8 +1,6 @@
 #include "CCircle.h"
 #include <cmath>
 
-#define SQRT_2 1.41421356237
-
 CCircle::CCircle(float x, float y, float radius, const CColor &col, int lt, bool isFilled) :
     CShape2D(col, lt, isFilled), center(x, y), radius(radius) {}
 
@@ -53,7 +51,7 @@ void CCircle::render(const CCanvas &ref) const {
     std::string stroke = colorString + CCanvas::circleOut + COLOR_RESET;
     std::string fill = colorString + CCanvas::fill + COLOR_RESET;
 
-    for (int x = 0; x < r * ratio / SQRT_2; x++) {
+    for (int x = 0; x < r * ratio / M_SQRT2; x++) {
         int y = (int)round(sqrt(pow(r, 2) - pow(x / ratio, 2)));
         if (!(x < width - 1 && y < height && x >= 0 && y >= 0)) continue;
         cv[cY - y][cX - x] = stroke;
@@ -69,7 +67,7 @@ void CCircle::render(const CCanvas &ref) const {
         }
     }
 
-    for (int y = 0; y < r / SQRT_2; y++) {
+    for (int y = 0; y < r / M_SQRT2; y++) {
         int x = ratio * (int)round(sqrt(pow(r, 2) - pow(y, 2)));
         if (!(x < width - 1 && y < height && x >= 0 && y >= 0)) continue;
         cv[cY - y][cX - x] = stroke;
