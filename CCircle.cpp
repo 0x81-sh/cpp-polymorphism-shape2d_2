@@ -48,13 +48,38 @@ void CCircle::render(const CCanvas &ref) const {
     int height = ref.getHeight();
     std::string **cv = ref.cv;
 
-    for (int x = floor(cX - r * ratio); x < ceil(cX + r * ratio); x++) {
-        for (int y = cY - r; y < cY + r; y++) {
-            if (!(x < width - 1 && y < height && x >= 0 && y >= 0)) continue;
-            double dist = sqrt(pow((cX - x) / ratio, 2) + pow(cY - y, 2));
-            if (dist >= r - 1 / ratio) continue;
-            if (r - 1 <= dist) cv[y][x] = colorString + CCanvas::circleOut + COLOR_RESET;
-            else if (isFilled) cv[y][x] = colorString + CCanvas::fill + COLOR_RESET;
+    std::string stroke = colorString + CCanvas::circleOut + COLOR_RESET;
+    std::string fill = colorString + CCanvas::fill + COLOR_RESET;
+
+    for (int x = 0; x < r * ratio / M_SQRT2; x++) {
+        int y = (int)round(sqrt(pow(r, 2) - pow(x / ratio, 2)));
+        if (!(x < width - 1 && y < height && x >= 0 && y >= 0)) continue;
+        cv[cY - y][cX - x] = stroke;
+        cv[cY + y][cX - x] = stroke;
+        cv[cY - y][cX + x] = stroke;
+        cv[cY + y][cX + x] = stroke;
+        if (!isFilled) continue;
+        while (y-- > 0) {
+            cv[cY - y][cX - x] = fill;
+            cv[cY + y][cX - x] = fill;
+            cv[cY - y][cX + x] = fill;
+            cv[cY + y][cX + x] = fill;
+        }
+    }
+
+    for (int y = 0; y < r / M_SQRT2; y++) {
+        int x = ratio * (int)round(sqrt(pow(r, 2) - pow(y, 2)));
+        if (!(x < width - 1 && y < height && x >= 0 && y >= 0)) continue;
+        cv[cY - y][cX - x] = stroke;
+        cv[cY + y][cX - x] = stroke;
+        cv[cY - y][cX + x] = stroke;
+        cv[cY + y][cX + x] = stroke;
+        if (!isFilled) continue;
+        while (x-- > 0) {
+            cv[cY - y][cX - x] = fill;
+            cv[cY + y][cX - x] = fill;
+            cv[cY - y][cX + x] = fill;
+            cv[cY + y][cX + x] = fill;
         }
     }
 
