@@ -5,6 +5,8 @@
 #include <limits>
 #include "CCircle.h"
 #include "CRectangle.h"
+#include <cassert>
+#include <cmath>
 
 #ifdef _WIN32
     #define CLEAR "cls"

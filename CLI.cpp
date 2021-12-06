@@ -131,7 +131,28 @@ void CLI::start() {
 }
 
 void CLI::unit_tests() {
-    //TODO: tests
+    std::cout << "\n";
+
+    CRectangle testRectangle(0, 0, 3, 3, {255, 0, 0}, 1, true);
+    testRectangle.move({2, 2});
+    testRectangle.scale(2);
+
+    assert(testRectangle.getBottomLeftCorner().getX() == 2);
+    assert(testRectangle.getBottomLeftCorner().getY() == 2);
+    assert(testRectangle.getHeight() == 6);
+    assert(testRectangle.getWidth() == 6);
+    assert(testRectangle.area() == 6 * 6);
+
+    CCircle testCircle(0, 0, 3, {255, 0, 0}, 2, false);
+    testCircle.move({-2,-2});
+    testCircle.scale(3);
+
+    assert(testCircle.getCenter().getX() == -2);
+    assert(testCircle.getCenter().getY() == -2);
+    assert(testCircle.getRadius() == 9);
+    assert(round(testCircle.area()) == round(pow(9, 2) * M_PI));
+
+    std::cout << "Ran all tests.\n";
 }
 
 void CLI::totalArea() {
