@@ -7,7 +7,7 @@ const std::string COLOR_RESET = !USE_COLOR ? "" : "\x1b[0m";
 class ICShapeRenderable {
     public:
         virtual ~ICShapeRenderable() {};
-        virtual void render(const CCanvas &ref) const = 0;
+        virtual void render(CCanvas &ref) const = 0;
 };
 
 
