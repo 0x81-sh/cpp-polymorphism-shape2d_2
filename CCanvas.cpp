@@ -57,3 +57,7 @@ void CCanvas::clear() {
     }
 }
 
+void CCanvas::writeChecked(int x, int y, const std::string &str) {
+    if (x < 0 || y < 0 || x >= width || y >= height) return;
+    cv[y][x] = str;
+}

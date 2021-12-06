@@ -20,10 +20,8 @@ class CCanvas {
         ~CCanvas();
         void render(std::ostream &out) const;
         void clear();
+        void writeChecked(int x, int y, const std::string &str);
 
         int getHeight() const;
         int getWidth() const;
 };
-
-
-

@@ -47,7 +47,7 @@ float CRectangle::area() const {
     return width * height;
 }
 
-void CRectangle::render(const CCanvas &ref) const {
+void CRectangle::render(CCanvas &ref) const {
     const CPoint2D &bottomLeft = bottomLeftCorner;
     const CPoint2D topRight(bottomLeft.getX() + width - 1, bottomLeft.getY() + height - 1);
     const CPoint2D topLeft(topRight.getX() - (topRight.getX() - bottomLeft.getX()), topRight.getY());

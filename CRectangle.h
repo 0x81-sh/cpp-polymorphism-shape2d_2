@@ -18,7 +18,7 @@ class CRectangle : public CShape2D {
         void scale(float factor) override;
         float area() const override;
         void move(const CPoint2D &loc) override;
-        void render(const CCanvas &ref) const override;
+        void render(CCanvas &ref) const override;
 
         const CPoint2D &getBottomLeftCorner() const;
         void setBottomLeftCorner(const CPoint2D &bottomLeftCorner);

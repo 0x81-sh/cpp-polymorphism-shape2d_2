@@ -39,7 +39,7 @@ float CCircle::area() const {
     return pow(radius, 2) * M_PI;
 }
 
-void CCircle::render(const CCanvas &ref) const {
+void CCircle::render(CCanvas &ref) const {
     int r = radius;
     int cX = center.getX();
     int cY = center.getY();
@@ -53,33 +53,31 @@ void CCircle::render(const CCanvas &ref) const {
 
     for (int x = 0; x < r * ratio / M_SQRT2; x++) {
         int y = (int)round(sqrt(pow(r, 2) - pow(x / ratio, 2)));
-        if (!(x < width - 1 && y < height && x >= 0 && y >= 0)) continue;
-        cv[cY - y][cX - x] = stroke;
-        cv[cY + y][cX - x] = stroke;
-        cv[cY - y][cX + x] = stroke;
-        cv[cY + y][cX + x] = stroke;
+        ref.writeChecked(cX - x, cY - y, stroke);
+        ref.writeChecked(cX - x, cY + y, stroke);
+        ref.writeChecked(cX + x, cY - y, stroke);
+        ref.writeChecked(cX + x, cY + y, stroke);
         if (!isFilled) continue;
         while (y-- > 0) {
-            cv[cY - y][cX - x] = fill;
-            cv[cY + y][cX - x] = fill;
-            cv[cY - y][cX + x] = fill;
-            cv[cY + y][cX + x] = fill;
+            ref.writeChecked(cX - x, cY - y, fill);
+            ref.writeChecked(cX - x, cY + y, fill);
+            ref.writeChecked(cX + x, cY - y, fill);
+            ref.writeChecked(cX + x, cY + y, fill);
         }
     }
 
     for (int y = 0; y < r / M_SQRT2; y++) {
         int x = ratio * (int)round(sqrt(pow(r, 2) - pow(y, 2)));
-        if (!(x < width - 1 && y < height && x >= 0 && y >= 0)) continue;
-        cv[cY - y][cX - x] = stroke;
-        cv[cY + y][cX - x] = stroke;
-        cv[cY - y][cX + x] = stroke;
-        cv[cY + y][cX + x] = stroke;
+        ref.writeChecked(cX - x, cY - y, stroke);
+        ref.writeChecked(cX - x, cY + y, stroke);
+        ref.writeChecked(cX + x, cY - y, stroke);
+        ref.writeChecked(cX + x, cY + y, stroke);
         if (!isFilled) continue;
         while (x-- > 0) {
-            cv[cY - y][cX - x] = fill;
-            cv[cY + y][cX - x] = fill;
-            cv[cY - y][cX + x] = fill;
-            cv[cY + y][cX + x] = fill;
+            ref.writeChecked(cX - x, cY - y, fill);
+            ref.writeChecked(cX - x, cY + y, fill);
+            ref.writeChecked(cX + x, cY - y, fill);
+            ref.writeChecked(cX + x, cY + y, fill);
         }
     }
 
